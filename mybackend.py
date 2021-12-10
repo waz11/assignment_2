@@ -1,5 +1,7 @@
 import csv
 import sqlite3
+from itertools import chain
+
 import queries as query
 
 
@@ -9,11 +11,12 @@ def get_recommendations(location='', time=0, amount=5):
 
     query = "SELECT StartStationName FROM BikeShare LIMIT 5;"
     res = cursor.execute(query).fetchall()
-
+    res = list(chain.from_iterable(res))
     recommendations = []
     for r in res:
         recommendations.append(r)
-    print(recommendations)
+
+    print("recommendations: ",recommendations)
 
     connection.commit()
     connection.close()
@@ -33,8 +36,8 @@ def db_build():
 
     select_all = "SELECT * FROM BikeShare LIMIT 5;"
     rows = cursor.execute(select_all).fetchall()
-    for r in rows:
-        print(r)
+    # for r in rows:
+    #     print(r)
 
     connection.commit()
     connection.close()

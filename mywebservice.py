@@ -1,5 +1,6 @@
 from flask import Flask, request as req, jsonify
 import mybackend as backend
+from mybackend import get_recommendations
 
 app = Flask(__name__)
 
@@ -9,7 +10,7 @@ def webservice():
     timeduration = req.args.get('timeduration')
     k = req.args.get('k')
     print(startlocation," ", timeduration)
-    res = ['ron','yuval']
+    res = get_recommendations(startlocation, timeduration, k)
     return jsonify(res)
 
 if __name__ == '__main__':
