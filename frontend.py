@@ -5,30 +5,37 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 
+from kivy.core.window import Window
+Window.clearcolor = (.6, .5, .4, .3)
+Window.size = (900, 400)
+
 
 class MyGrid(GridLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.cols=1
+        # self.cols=1
+        #
+        # self.inside = GridLayout()
+        # self.inside.cols = 2
+        #
+        # self.inside.add_widget(Label(text="What is your current location?"))
+        # self.location = TextInput(multiline = False)
+        # self.inside.add_widget(self.location)
+        #
+        # self.inside.add_widget(Label(text="How much time would you like to spend?"))
+        # self.time = TextInput(multiline=False)
+        # self.inside.add_widget(self.time)
+        #
+        # self.inside.add_widget(Label(text="How much location recommendations would you like to receive?"))
+        # self.amount = TextInput(multiline=False)
+        # self.inside.add_widget(self.amount)
+        #
+        # self.add_widget(self.inside)
+        # self.submit = Button(text="Recommend me", font_size=40)
+        # self.add_widget(self.submit)
 
-        self.inside = GridLayout()
-        self.inside.cols = 2
-
-        self.inside.add_widget(Label(text="What is your current location?"))
-        self.location = TextInput(multiline = False)
-        self.inside.add_widget(self.location)
-
-        self.inside.add_widget(Label(text="How much time would you like to spend?"))
-        self.time = TextInput(multiline=False)
-        self.inside.add_widget(self.time)
-
-        self.inside.add_widget(Label(text="How much location recommendations would you like to receive?"))
-        self.amount = TextInput(multiline=False)
-        self.inside.add_widget(self.amount)
-
-        self.add_widget(self.inside)
-        self.submit = Button(text="Recommend me", font_size=40)
-        self.add_widget(self.submit)
+    def ron(self):
+        print("ron")
 
 class MyApp(App):
     def build(self):

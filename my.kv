@@ -1,0 +1,54 @@
+
+<MyGrid>:
+    location:location
+	time:time
+	amount:amount
+
+    GridLayout:
+        cols:1
+        size: root.width-100, root.height+20
+        pos: 20,20
+
+        Image:
+            source: 'pic1.jpg'
+            size_hint_x: 0.4
+            allow_stretch: True
+
+
+        GridLayout:
+            cols: 2
+
+            Label:
+                text: "What is your current location?"
+                font_size: 15
+            TextInput:
+                id:location
+                multiline: False
+                font_size: 20
+
+
+            Label:
+                text: 'How much time would you like to spend?'
+                font_size: 15
+            TextInput:
+                id:time
+                multiline: False
+                font_size: 20
+
+
+            Label:
+                text: 'How much location recommendations\nwould you like to receive?'
+                font_size: 15
+            TextInput:
+                id:amount
+                multiline: False
+                font_size: 20
+
+
+        BoxLayout:
+            orientation:'vertical'
+            padding : 10
+            Button:
+                text: 'Recommend me'
+                font_size: 20
+                on_press: root.ron()
