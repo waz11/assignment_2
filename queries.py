@@ -36,3 +36,5 @@ insert_records = '''INSERT INTO BikeShare (
                             Gender,
                             TripDurationinmin
                         ) VALUES(?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
+
+get_locations = '''SELECT DISTINCT StartStationName FROM BikeShare ORDER BY StartStationName ASC'''

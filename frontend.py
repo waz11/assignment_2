@@ -3,13 +3,20 @@ from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
+from kivy.uix.popup import Popup
+from kivy.uix.scrollview import ScrollView
 from kivy.uix.textinput import TextInput
 
 from kivy.core.window import Window
+
+from mybackend import get_recommendations
+
 Window.clearcolor = (.6, .5, .4, .3)
-Window.size = (900, 400)
+Window.size = (900, 600)
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
+
+
 
 class MyGrid(GridLayout):
     def __init__(self, **kwargs):
@@ -35,8 +42,23 @@ class MyGrid(GridLayout):
         # self.submit = Button(text="Recommend me", font_size=40)
         # self.add_widget(self.submit)
 
-    def ron(self):
-        print("ron")
+    def show_recommendations(self):
+        recommendations = get_recommendations()
+        line = ""
+        for rec in recommendations:
+            line +='\n' +rec
+        for rec in recommendations:
+            line +='\n' +rec
+        for rec in recommendations:
+            line +='\n' +rec
+        for rec in recommendations:
+            line +='\n' +rec
+
+        popup = Popup(title='Test popup',
+                      content=Label(text=line),
+                      size_hint=(None, None), size=(400, 400))
+        popup.open()
+
 
 class MyApp(App):
     def build(self):
