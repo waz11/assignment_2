@@ -8,7 +8,8 @@ from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 Window.clearcolor = (.6, .5, .4, .3)
 Window.size = (900, 400)
-
+from kivy.config import Config
+Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
 class MyGrid(GridLayout):
     def __init__(self, **kwargs):
