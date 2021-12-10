@@ -1,4 +1,4 @@
-from flask import Flask, request as req, jsonify, send_file
+from flask import Flask, request as req, jsonify
 import mybackend as backend
 
 app = Flask(__name__)
