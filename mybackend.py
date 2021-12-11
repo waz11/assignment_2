@@ -1,18 +1,13 @@
+import sqlite3
 from itertools import chain
 from database import Database
 import queries
 
-
-def ron():
-    res = Database().select_query(queries.get_locations)
-    res = list(chain.from_iterable(res))
-    ans = []
-    for r in res:
-        ans.append(r)
-    print(ans)
-    print('bayside park' in res)
-    return ans
-
+def clean_rows(list):
+    res = []
+    for r in list:
+        res.append(r)
+    return res
 
 def get_recommendations(location='', time=0, amount=5):
     query = "SELECT StartStationName FROM BikeShare LIMIT 5;"
@@ -24,8 +19,15 @@ def get_recommendations(location='', time=0, amount=5):
     print("recommendations: ",recommendations)
     return recommendations
 
+def is_location_exists(location):
+    connection = sqlite3.connect('database.db')
+    cursor = connection.cursor()
+    query = "select StartStationName from BikeShare where StartStationName LIKE '%"+location+"%' limit 1;"
+    res = cursor.execute(query).fetchall()
+    return len(res)>0
+
 
 if __name__ == '__main__':
     db = Database()
-    # db.test()
-    ron()
+    db.test()
+

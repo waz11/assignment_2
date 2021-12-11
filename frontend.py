@@ -17,6 +17,22 @@ from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
 
+class MyPopup(Popup):
+    def __init__(self):
+        grid = GridLayout(cols=1)
+        super().__init__(content=grid, size_hint=(.40, .40))
+        self.msg = Label(halign="center")
+        btn = Button(text="close")
+        btn.bind(on_press=lambda x: self.dismiss())
+        grid.add_widget(self.msg)
+        grid.add_widget(btn)
+
+    def set_msg(self, text):
+        self.msg.text = text
+
+    def set_title(self, title):
+        self.title = title
+
 
 class MyGrid(GridLayout):
     def __init__(self, **kwargs):
@@ -43,21 +59,23 @@ class MyGrid(GridLayout):
         # self.add_widget(self.submit)
 
     def show_recommendations(self):
-        recommendations = get_recommendations()
-        line = ""
-        for rec in recommendations:
-            line +='\n' +rec
-        for rec in recommendations:
-            line +='\n' +rec
-        for rec in recommendations:
-            line +='\n' +rec
-        for rec in recommendations:
-            line +='\n' +rec
+        # recommendations = get_recommendations()
+        # line = ""
+        # for rec in recommendations:
+        #     line +='\n' +rec
+        # for rec in recommendations:
+        #     line +='\n' +rec
+        # for rec in recommendations:
+        #     line +='\n' +rec
+        # for rec in recommendations:
+        #     line +='\n' +rec
+        #
+        # popup = Popup(title='Test popup',
+        #               content=Label(text=line),
+        #               size_hint=(None, None), size=(400, 400))
 
-        popup = Popup(title='Test popup',
-                      content=Label(text=line),
-                      size_hint=(None, None), size=(400, 400))
-        popup.open()
+        p=MyPopup()
+        p.open()
 
 
 class MyApp(App):

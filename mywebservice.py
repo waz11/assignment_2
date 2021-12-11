@@ -1,3 +1,4 @@
+import flask
 from flask import Flask, request as req, jsonify
 import mybackend as backend
 from mybackend import get_recommendations
@@ -11,6 +12,7 @@ def webservice():
     k = req.args.get('k')
     print(startlocation," ", timeduration)
     res = get_recommendations(startlocation, timeduration, k)
+    # return flask.Response(jsonify(res), status=200)
     return jsonify(res)
 
 if __name__ == '__main__':
