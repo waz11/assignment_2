@@ -70,7 +70,7 @@ class MyGrid(GridLayout):
         for rec in recommendations:
             line +='\n' +rec
 
-        popup = Popup(title='Test popup',
+        popup = Popup(title='Recommendations:',
                       content=Label(text=line),
                       size_hint=(None, None), size=(400, 600))
 
