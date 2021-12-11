@@ -33,6 +33,3 @@ def number_of_locations():
 if __name__ == '__main__':
     db = Database()
     db.test()
-    # get_recommendations()
-    # print(is_location_exists('Oakland Ave'))
-    # number_of_locations()
