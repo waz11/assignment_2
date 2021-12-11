@@ -59,23 +59,22 @@ class MyGrid(GridLayout):
         # self.add_widget(self.submit)
 
     def show_recommendations(self):
-        # recommendations = get_recommendations()
-        # line = ""
-        # for rec in recommendations:
-        #     line +='\n' +rec
-        # for rec in recommendations:
-        #     line +='\n' +rec
-        # for rec in recommendations:
-        #     line +='\n' +rec
-        # for rec in recommendations:
-        #     line +='\n' +rec
-        #
-        # popup = Popup(title='Test popup',
-        #               content=Label(text=line),
-        #               size_hint=(None, None), size=(400, 400))
+        recommendations = get_recommendations()
+        line = ""
+        for rec in recommendations:
+            line +='\n' +rec
+        for rec in recommendations:
+            line +='\n' +rec
+        for rec in recommendations:
+            line +='\n' +rec
+        for rec in recommendations:
+            line +='\n' +rec
 
-        p=MyPopup()
-        p.open()
+        popup = Popup(title='Test popup',
+                      content=Label(text=line),
+                      size_hint=(None, None), size=(400, 400))
+
+        popup.open()
 
 
 class MyApp(App):
