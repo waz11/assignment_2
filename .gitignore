@@ -8,3 +8,5 @@ out
 gen
 BikeShare.csv
 /BikeShare.csv
+database.db
+/database.db

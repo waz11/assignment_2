@@ -1,44 +1,17 @@
 create_table = '''CREATE TABLE IF NOT EXISTS BikeShare
             (
                 TripDuration INT,
-                StartTime DATE,
-                StopTime DATE,
-                StartStationID INT,
                 StartStationName TEXT,
-                StartStationLatitude FLOAT,
-                StartStationLongitude FLOAT,
-                EndStationID INT,
                 EndStationName TEXT,
-                EndStationLatitude FLOAT,
-                EndStationLongitude FLOAT,
-                BikeID INT,
-                UserType TEXT,
-                BirthYear INT,
-                Gender INT,
                 TripDurationinmin INT
             )'''
-
-drop_table = '''drop table BikeShare;'''
-
 
 
 insert_records = '''INSERT INTO BikeShare (
                             TripDuration,
-                            StartTime,
-                            StopTime,
-                            StartStationID,
-                            StartStationName, 
-                            StartStationLatitude,
-                            StartStationLongitude,
-                            EndStationID,
+                            StartStationName,
                             EndStationName,
-                            EndStationLatitude,
-                            EndStationLongitude,
-                            BikeID,
-                            UserType,
-                            BirthYear,
-                            Gender,
                             TripDurationinmin
-                        ) VALUES(?, ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'''
+                        ) VALUES(?,?,?,?)'''
 
 get_locations = '''SELECT DISTINCT StartStationName FROM BikeShare ORDER BY StartStationName ASC'''

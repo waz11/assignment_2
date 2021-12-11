@@ -1,6 +1,6 @@
 import sqlite3
 from itertools import chain
-from database import Database
+from database_func import Database
 import queries
 
 def clean_rows(list):
