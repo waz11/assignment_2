@@ -72,7 +72,7 @@ class MyGrid(GridLayout):
 
         popup = Popup(title='Test popup',
                       content=Label(text=line),
-                      size_hint=(None, None), size=(400, 400))
+                      size_hint=(None, None), size=(400, 600))
 
         popup.open()
 
