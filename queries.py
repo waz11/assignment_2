@@ -17,6 +17,13 @@ create_table = '''CREATE TABLE IF NOT EXISTS BikeShare
                 Gender INT,
                 TripDurationinmin INT
             )'''
+drop = "ALTER TABLE BikeShare DROP COLUMN StartStationID;"
+# StartStationID
+# StartStationLatitude
+# StartStationLongitude
+# EndStationID
+
+
 
 insert_records = '''INSERT INTO BikeShare (
                             TripDuration,
