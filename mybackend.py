@@ -33,15 +33,12 @@ def get_recommendations(location='', time=0, amount=5):
     # recommendations = clean_rows(res)
 
     recommendations = [location, time, amount]
-
-    print("recommendations: ",recommendations)
     return recommendations
 
 # the function returns true if the location is exists in the database
 def is_location_exists(location):
     query = "select StartStationName from BikeShare where StartStationName = '"+location+"' COLLATE NOCASE limit 1;"
     res = Database().select_query(query)
-    print(res)
     return len(res)>0
 
 # the function returns thr enumber of locations exist in tha data
