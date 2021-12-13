@@ -1,21 +1,16 @@
-import kivy
 from kivy.app import App
 from kivy.properties import ObjectProperty
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
 from kivy.uix.popup import Popup
-from kivy.uix.scrollview import ScrollView
-from kivy.uix.textinput import TextInput
-
 from kivy.core.window import Window
-
 from database_func import Database
 from mybackend import get_recommendations, is_legal_input
+from kivy.config import Config
 
 Window.clearcolor = (.6, .5, .4, .3)
 Window.size = (900, 600)
-from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
 # the class is for showing reccomendations / errors popup

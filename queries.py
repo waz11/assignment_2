@@ -1,4 +1,3 @@
-
 # query for create the main table of database
 create_table = '''CREATE TABLE IF NOT EXISTS BikeShare
             (

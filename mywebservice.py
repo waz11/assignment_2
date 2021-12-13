@@ -1,6 +1,4 @@
-import flask
 from flask import Flask, request as req, jsonify
-import mybackend as backend
 from database_func import Database
 from mybackend import get_recommendations
 

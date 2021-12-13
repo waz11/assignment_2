@@ -1,7 +1,4 @@
-import sqlite3
-from itertools import chain
 from database_func import Database
-import queries
 
 # the function return values from database query with no symbols
 def clean_rows(list):
