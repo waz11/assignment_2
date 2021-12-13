@@ -7,7 +7,7 @@ class Database:
     def __init__(self):
         self.build()
 
-
+    # the function gets a query adn return the results from the data base
     def select_query(self, query):
         connection = sqlite3.connect('database.db')
         cursor = connection.cursor()
@@ -16,6 +16,7 @@ class Database:
         connection.close()
         return res
 
+    # the function build sqlite3 database from csv file
     def build(self, path='BikeShare.csv'):
         # https://www.geeksforgeeks.org/how-to-import-a-csv-file-into-a-sqlite-database-table-using-python/
         connection = sqlite3.connect('database.db')
@@ -35,6 +36,7 @@ class Database:
             connection.close()
         return connection
 
+    # function for testing the data base
     def test(self):
         connection = sqlite3.connect('database.db')
         cursor = connection.cursor()

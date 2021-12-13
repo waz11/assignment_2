@@ -10,6 +10,7 @@ from kivy.uix.textinput import TextInput
 
 from kivy.core.window import Window
 
+from database_func import Database
 from mybackend import get_recommendations
 
 Window.clearcolor = (.6, .5, .4, .3)
@@ -17,7 +18,7 @@ Window.size = (900, 600)
 from kivy.config import Config
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
-
+# the class is for showing reccomendations / errors popup
 class MyPopup(Popup):
     def __init__(self):
         grid = GridLayout(cols=1)
@@ -49,7 +50,6 @@ class MyGrid(GridLayout):
         #
         # self.inside = GridLayout()
         # self.inside.cols = 2
-        #
         # self.inside.add_widget(Label(text="What is your current location?"))
         # self.location = TextInput(multiline = False)
         # self.inside.add_widget(self.location)
@@ -91,4 +91,5 @@ class MyApp(App):
 
 
 if __name__ == '__main__':
+    Database()
     MyApp().run()
