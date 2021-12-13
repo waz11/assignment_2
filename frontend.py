@@ -1,5 +1,6 @@
 import kivy
 from kivy.app import App
+from kivy.properties import ObjectProperty
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.label import Label
@@ -35,7 +36,14 @@ class MyPopup(Popup):
 
 
 class MyGrid(GridLayout):
+
+    location = ObjectProperty(None)
+    time = ObjectProperty(None)
+    amount = ObjectProperty(None)
+
     def __init__(self, **kwargs):
+
+
         super().__init__(**kwargs)
         # self.cols=1
         #
@@ -59,16 +67,22 @@ class MyGrid(GridLayout):
         # self.add_widget(self.submit)
 
     def show_recommendations(self):
-        recommendations = get_recommendations()
+        location = self.location.text
+        time = self.time.text
+        amount = self.amount.text
+        recommendations = get_recommendations(location, time, amount)
         line = ""
         for rec in recommendations:
-            line +='\n' +rec
+            line +='\n' +str(rec)
 
         popup = Popup(title='Recommendations:',
                       content=Label(text=line),
                       size_hint=(None, None), size=(400, 600))
 
         popup.open()
+        self.location.text = ''
+        self.time.text = ''
+        self.amount.text = ''
 
 
 class MyApp(App):
