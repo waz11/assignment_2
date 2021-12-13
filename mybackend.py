@@ -11,7 +11,15 @@ def clean_rows(list):
     return res
 
 
+def is_legal_input(location, time, amount):
+    errors = ["bad input"]
+    return errors
+
+
 def get_recommendations(location='', time=0, amount=5):
+    errors = is_legal_input(location, time, amount)
+    if len(errors) is not 0:
+        return errors
     query = "SELECT StartStationName FROM BikeShare LIMIT 5;"
     res = Database().select_query(query)
     res = list(chain.from_iterable(res))

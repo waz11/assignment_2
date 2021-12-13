@@ -63,12 +63,6 @@ class MyGrid(GridLayout):
         line = ""
         for rec in recommendations:
             line +='\n' +rec
-        for rec in recommendations:
-            line +='\n' +rec
-        for rec in recommendations:
-            line +='\n' +rec
-        for rec in recommendations:
-            line +='\n' +rec
 
         popup = Popup(title='Recommendations:',
                       content=Label(text=line),
