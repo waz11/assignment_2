@@ -53,7 +53,7 @@ class MyGrid(GridLayout):
             for rec in errors:
                 line += '\n' + str(rec)
             title='Errors:'
-            size=(200,200)
+            size=(500,200)
         else:
             title = 'Recommendations:'
             recommendations = get_recommendations(location, time, amount)

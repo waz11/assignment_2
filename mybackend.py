@@ -8,12 +8,18 @@ def clean_rows(list):
         res.append(r.translate("(',)"))
     return res
 
+isInt = lambda a : a.isdigit() and int(a) > 0
+
 #the function returns a list of errors if the inputs aren't as expected
-def is_legal_input(location, time, amount):
+def is_legal_input(location='', time='', amount=''):
     errors = []
-    # errors.append('a')
-    # errors.append('a')
-    # errors.append('a')
+    if not is_location_exists(location):
+        print("fgdlkjdfklgdfg")
+        errors.append('* that location is not exist in our data')
+    if not isInt(time):
+        errors.append('* time is not a number bigger than 0')
+    if not isInt(amount):
+        errors.append('* num of recommendations is not a number bigger than 0')
     return errors
 
 # the function gets location, time and number of time for traveling
@@ -34,8 +40,9 @@ def get_recommendations(location='', time=0, amount=5):
 
 # the function returns true if the location is exists in the database
 def is_location_exists(location):
-    query = "select StartStationName from BikeShare where StartStationName LIKE '%"+location+"%' limit 1;"
+    query = "select StartStationName from BikeShare where StartStationName = '"+location+"' COLLATE NOCASE limit 1;"
     res = Database().select_query(query)
+    print(res)
     return len(res)>0
 
 # the function returns thr enumber of locations exist in tha data
