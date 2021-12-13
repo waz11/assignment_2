@@ -12,8 +12,11 @@ def clean_rows(list):
     return res
 
 #the function returns a list of errors if the inputs aren't as expected
-def is_legal_input(location='', time='', amount=''):
+def is_legal_input(location, time, amount):
     errors = []
+    # errors.append('a')
+    # errors.append('a')
+    # errors.append('a')
     return errors
 
 # the function gets location, time and number of time for traveling

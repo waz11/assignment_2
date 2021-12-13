@@ -11,7 +11,7 @@ from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 
 from database_func import Database
-from mybackend import get_recommendations
+from mybackend import get_recommendations, is_legal_input
 
 Window.clearcolor = (.6, .5, .4, .3)
 Window.size = (900, 600)
@@ -70,14 +70,23 @@ class MyGrid(GridLayout):
         location = self.location.text
         time = self.time.text
         amount = self.amount.text
-        recommendations = get_recommendations(location, time, amount)
         line = ""
-        for rec in recommendations:
-            line +='\n' +str(rec)
+        size = (400, 600)
+        title = ''
+        errors = is_legal_input(location, time, amount)
 
-        popup = Popup(title='Recommendations:',
-                      content=Label(text=line),
-                      size_hint=(None, None), size=(400, 600))
+        if len(errors) is not 0:
+            for rec in errors:
+                line += '\n' + str(rec)
+            title='Errors:'
+            size=(200,200)
+        else:
+            title = 'Recommendations:'
+            recommendations = get_recommendations(location, time, amount)
+            for rec in recommendations:
+                line +='\n' +str(rec)
+
+        popup = Popup(title=title, content=Label(text=line),size_hint=(None, None), size=size)
 
         popup.open()
         self.location.text = ''
