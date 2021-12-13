@@ -43,28 +43,7 @@ class MyGrid(GridLayout):
     amount = ObjectProperty(None)
 
     def __init__(self, **kwargs):
-
-
         super().__init__(**kwargs)
-        # self.cols=1
-        #
-        # self.inside = GridLayout()
-        # self.inside.cols = 2
-        # self.inside.add_widget(Label(text="What is your current location?"))
-        # self.location = TextInput(multiline = False)
-        # self.inside.add_widget(self.location)
-        #
-        # self.inside.add_widget(Label(text="How much time would you like to spend?"))
-        # self.time = TextInput(multiline=False)
-        # self.inside.add_widget(self.time)
-        #
-        # self.inside.add_widget(Label(text="How much location recommendations would you like to receive?"))
-        # self.amount = TextInput(multiline=False)
-        # self.inside.add_widget(self.amount)
-        #
-        # self.add_widget(self.inside)
-        # self.submit = Button(text="Recommend me", font_size=40)
-        # self.add_widget(self.submit)
 
     def show_recommendations(self):
         location = self.location.text
