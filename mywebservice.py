@@ -4,7 +4,6 @@ from mybackend import get_recommendations
 
 app = Flask(__name__)
 
-
 # get endpoint of webservice for getting recomendations
 @app.route('/', methods=['GET'])
 def webservice():

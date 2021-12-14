@@ -21,6 +21,42 @@ def is_legal_input(location='', time='', amount=''):
         errors.append('* num of recommendations is not a number bigger than 0')
     return errors
 
+def find_max_time(listT):
+    max_time = 0
+    for l in listT:
+        tmp = list(l)
+        if len(tmp) > 1:
+            temp_time = tmp[1]
+            max_time = max(max_time, temp_time)
+    # print(max_time)
+    return max_time
+
+def replace_empty_time_with_max_time(listT, max_time):
+    new_list_location_time = []
+    for l in listT:
+        tmp = list(l)
+        if len(tmp) == 1:
+            new_tuple = (tmp[0],max_time )
+            new_list_location_time.append(new_tuple)
+        else:
+            new_list_location_time.append(l)
+    # print(new_list_location_time)
+    return new_list_location_time
+
+def get_sorted_recommendations(station_and_time=[], time=0):
+    final_list_recommendations = []
+    for t in station_and_time:
+        tmp = list(t)
+        tmp[1] = abs(time - tmp[1])
+        tmp = tuple(tmp)
+        final_list_recommendations.append(tmp)
+        # print(final_list_recommendations)
+
+    final_list_recommendations = sorted(final_list_recommendations, key=lambda tup: (tup[1], tup[0]))
+
+    # print(final_list_recommendations)
+    return final_list_recommendations
+
 # the function gets location, time and number of time for traveling
 # and return recommendations of the end place of optional trips
 def get_recommendations(location='', time=0, amount=5):
@@ -31,9 +67,21 @@ def get_recommendations(location='', time=0, amount=5):
     # res = Database().select_query(query)
     # res = list(chain.from_iterable(res))
     # recommendations = clean_rows(res)
+    time = int(time)
+    amount = int(amount)
+    query = "SELECT EndStationName, TripDurationinmin FROM BikeShare WHERE StartStationName = '"+location+"' COLLATE NOCASE;"
+    res = Database().select_query(query)
+    res = set(res)
+    res = list(res)
+    location_time_list = replace_empty_time_with_max_time(res, find_max_time(res))
+    recommendations = get_sorted_recommendations(location_time_list, time)
+    rec = [i[0] for i in recommendations[:amount]]
+    print(recommendations[:amount])
+    return rec
 
-    recommendations = [location, time, amount]
-    return recommendations
+def print_list(list):
+    for row in list:
+        print(row)
 
 # the function returns true if the location is exists in the database
 def is_location_exists(location):
@@ -49,5 +97,7 @@ def number_of_locations():
 
 
 if __name__ == '__main__':
-    db = Database()
-    db.test()
+    # db = Database()
+    # db.test()
+    rec = get_recommendations('Oakland Ave','1','100')
+    # print_list(rec)
