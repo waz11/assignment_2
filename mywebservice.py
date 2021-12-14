@@ -11,10 +11,12 @@ def webservice():
     startlocation = req.args.get('startlocation')
     timeduration = req.args.get('timeduration')
     k = req.args.get('k')
-    print(startlocation," ", timeduration)
+    if(startlocation is None or timeduration is None or k is None):
+        return jsonify([])
     res = get_recommendations(startlocation, timeduration, k)
     # return flask.Response(jsonify(res), status=200)
     return jsonify(res)
+
 
 if __name__ == '__main__':
     db = Database()
