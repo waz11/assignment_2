@@ -13,24 +13,6 @@ Window.clearcolor = (.6, .5, .4, .3)
 Window.size = (900, 600)
 Config.set('input', 'mouse', 'mouse,multitouch_on_demand')
 
-# the class is for showing reccomendations / errors popup
-class MyPopup(Popup):
-    def __init__(self):
-        grid = GridLayout(cols=1)
-        super().__init__(content=grid, size_hint=(.40, .40))
-        self.msg = Label(halign="center")
-        btn = Button(text="close")
-        btn.bind(on_press=lambda x: self.dismiss())
-        grid.add_widget(self.msg)
-        grid.add_widget(btn)
-
-    def set_msg(self, text):
-        self.msg.text = text
-
-    def set_title(self, title):
-        self.title = title
-
-
 class MyGrid(GridLayout):
 
     location = ObjectProperty(None)
@@ -61,8 +43,8 @@ class MyGrid(GridLayout):
                 line +='\n' +str(rec)
 
         popup = Popup(title=title, content=Label(text=line),size_hint=(None, None), size=size)
-
         popup.open()
+
         self.location.text = ''
         self.time.text = ''
         self.amount.text = ''

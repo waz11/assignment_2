@@ -4,7 +4,6 @@ from database_func import Database
 def clean_rows(list):
     res = []
     for r in list:
-        print(r)
         res.append(r.translate("(',)"))
     return res
 
@@ -43,6 +42,7 @@ def replace_empty_time_with_max_time(listT, max_time):
     # print(new_list_location_time)
     return new_list_location_time
 
+
 def get_sorted_recommendations(station_and_time=[], time=0):
     final_list_recommendations = []
     for t in station_and_time:
@@ -51,17 +51,16 @@ def get_sorted_recommendations(station_and_time=[], time=0):
         tmp = tuple(tmp)
         final_list_recommendations.append(tmp)
         # print(final_list_recommendations)
-
     final_list_recommendations = sorted(final_list_recommendations, key=lambda tup: (tup[1], tup[0]))
-
     # print(final_list_recommendations)
     return final_list_recommendations
+
 
 # the function gets location, time and number of time for traveling
 # and return recommendations of the end place of optional trips
 def get_recommendations(location='', time=0, amount=5):
     errors = is_legal_input(location, time, amount)
-    if len(errors) is not 0:
+    if len(errors) > 0:
         return errors
     # query = "SELECT StartStationName FROM BikeShare LIMIT 5;"
     # res = Database().select_query(query)
@@ -75,9 +74,19 @@ def get_recommendations(location='', time=0, amount=5):
     res = list(res)
     location_time_list = replace_empty_time_with_max_time(res, find_max_time(res))
     recommendations = get_sorted_recommendations(location_time_list, time)
+    recommendations = remove_duplicate_locations(recommendations)
     rec = [i[0] for i in recommendations[:amount]]
-    print(recommendations[:amount])
     return rec
+
+def remove_duplicate_locations(recommendations_list):
+    clean_recommendations_list = [recommendations_list[0]]
+    recommendations_list.remove(recommendations_list[0])
+    for i in recommendations_list:
+        location, times = zip(*clean_recommendations_list)
+        if i[0] not in location:
+            clean_recommendations_list.append(i)
+    # print(clean_recommendations_list)
+    return clean_recommendations_list
 
 def print_list(list):
     for row in list:
@@ -99,5 +108,5 @@ def number_of_locations():
 if __name__ == '__main__':
     # db = Database()
     # db.test()
-    rec = get_recommendations('Oakland Ave','1','100')
-    # print_list(rec)
+    rec = get_recommendations('Oakland Ave','1','10000000000')
+    print_list(rec)
