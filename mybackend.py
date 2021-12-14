@@ -14,7 +14,7 @@ isInt = lambda a : a.isdigit() and int(a) > 0
 def is_legal_input(location='', time='', amount=''):
     errors = []
     if not is_location_exists(location):
-        errors.append('* that location is not exist in our data')
+        errors.append('* The start location is not exists')
     if not isInt(time):
         errors.append('* time is not a number bigger than 0')
     if not isInt(amount):
